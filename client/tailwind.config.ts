@@ -19,6 +19,10 @@ const config = {
     },
     extend: {
       colors: {
+        primarycolor:"#DDDDDD",
+        secondarycolor:"#001F3F",
+        accentcolor:"#F7931A",
+        creamywhite:"#F9F9F9",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -71,6 +75,10 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      backgroundImage: {
+        signinblob: "url('/public/signinblob.svg')",
+        
       },
     },
   },
