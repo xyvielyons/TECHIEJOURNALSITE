@@ -4,7 +4,7 @@ import RegisterForm from '@/components/auth/register-form'
 export default function RegisterPage() {
   return (
     <div className="flex gap-4 items-center justify-center flex-col-reverse p-2 md:p-5 xl:p-8 md:flex-row">
-          <div className="md:w-full md:p-20">
+          <div className="md:w-full md:p-20 gap-4">
              <FormImageSection></FormImageSection>
           </div>
 

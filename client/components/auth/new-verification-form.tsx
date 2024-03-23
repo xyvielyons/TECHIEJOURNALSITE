@@ -7,6 +7,8 @@ import { useSearchParams } from "next/navigation";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
 import { NewVerification } from "@/actions/new-verification";
+import Link from "next/link";
+import { Button } from "../ui/button";
 export const NewVerificationForm = ()=>{
     const searchParams = useSearchParams()
     const [error,setError] = useState<string | undefined>()
@@ -32,6 +34,7 @@ export const NewVerificationForm = ()=>{
     
     return(
         <CardWrapper
+        header="Verification 🔑"
         headerLabel="Confirming your verification"
         backButtonLabel="Back to login"
         backButtonHref="/auth/login"
@@ -41,7 +44,9 @@ export const NewVerificationForm = ()=>{
                 
                 <FormSuccess message={success}></FormSuccess>
                 <FormError message={error}></FormError>
+                
             </div>
+            
         </CardWrapper>
     )
 }

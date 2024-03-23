@@ -6,27 +6,21 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
 import type {Metadata} from 'next'
+import FormImage from '@/components/about/about-image'
 export const metadata: Metadata = {
   title: "About",
   description: "About Techie.io",
 };
 function Login() {
   return (
-    <div className="flex flex-col-reverse md:flex-row">
+    <div className="flex flex-col-reverse md:flex-row items-center justify-center">
       
 
 
-           <div className='mt-0 md:mt-5 md:w-7/12'>
-              <div className="relative flex justify-center items-center">
-                  <div className="absolute top-10 p-10 md:p-28 ml-10">  
-                    <Image className='' src={AboutSvg} width='1024' height='768' alt='signup blob'></Image>
-                  </div>
-
-                  <div className="p-5">
-                    <Image className='' src={AboutBlob} width='600' height='600' alt='signup blob'></Image>
-                  </div>
-
-              </div>
+           <div className=''>
+              
+             <FormImage></FormImage>
+         
            </div>
 
 

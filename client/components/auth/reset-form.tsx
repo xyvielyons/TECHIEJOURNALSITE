@@ -27,7 +27,8 @@ export default function ResetForm() {
     resolver:zodResolver(ResetSchema),
     defaultValues:{
       email:""
-    }
+    },
+    mode:"onBlur"
   })
   const onSubmit = (values:z.infer<typeof ResetSchema>)=>{
     setSuccess("")
@@ -46,7 +47,8 @@ export default function ResetForm() {
 
   return (
     <CardWrapper
-    headerLabel='Forgot your password'
+    header="Please enter the One Time Password 😃"
+    headerLabel='Your one time password has been sent to your email address.'
     backButtonLabel="Back to login"
     backButtonHref='/auth/login'
     >
