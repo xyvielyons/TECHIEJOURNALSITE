@@ -47,17 +47,13 @@ export const LoginSchema = z.object({
     }),
     password:z.string().min(1,{
         message:"Password is required"
-    }),
+    }).nonempty({message:"Enter your password"}),
     code:z.optional(z.string())
 })
 export const RegisterSchema = z.object({
-    email:z.string().email({
-        message:"Email is required"
-    }),
-    password:z.string().min(6,{
-        message:"minimum 6 characters required"
-    }),
-    name:z.string().min(1,{
-        message:"Name is required "
-    })
+    firstName:z.string().nonempty({ message: "Please enter your first name." }).min(3,{message:"Must be 3 or more characters long"}),
+    lastName:z.string().min(3,{message:"Must be 3 or more characters long"}),
+    email:z.string().email({message:"Invalid email address"}),
+    password:z.string().nonempty({ message: "Enter your password" }),
+    confirmPassword:z.string().nonempty({ message: "confrim your password" })
 })

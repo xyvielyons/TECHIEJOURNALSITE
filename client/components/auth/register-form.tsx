@@ -27,10 +27,13 @@ export default function RegisterForm() {
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver:zodResolver(RegisterSchema),
     defaultValues:{
+      firstName:"",
+      lastName:"",
       email:"",
       password:"",
-      name:""
-    }
+      confirmPassword:""
+    },
+    mode:"onBlur"
   })
   const onSubmit = (values:z.infer<typeof RegisterSchema>)=>{
     setSuccess("")
@@ -47,7 +50,8 @@ export default function RegisterForm() {
 
   return (
     <CardWrapper
-    headerLabel='Create an account'
+    header="Register 😃"
+    headerLabel='Please complete the form below to create an account'
     backButtonLabel="Already have an account?"
     backButtonHref='/auth/login'
     showSocial={true}
@@ -61,14 +65,32 @@ export default function RegisterForm() {
 
           <FormField
             control={form.control}
-            name="name"
+            name="firstName"
             render={({field})=>(
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                {/* <FormLabel>Name</FormLabel> */}
                 <FormControl>
                   <Input
                   {...field}
-                  placeholder='John Doe'
+                  placeholder='first name'
+                  disabled={isPending}
+                  ></Input>
+                </FormControl>
+                <FormMessage/>
+
+              </FormItem>
+            )}
+            />
+          <FormField
+            control={form.control}
+            name="lastName"
+            render={({field})=>(
+              <FormItem>
+                {/* <FormLabel>Name</FormLabel> */}
+                <FormControl>
+                  <Input
+                  {...field}
+                  placeholder='last name'
                   disabled={isPending}
                   ></Input>
                 </FormControl>
@@ -82,7 +104,7 @@ export default function RegisterForm() {
             name="email"
             render={({field})=>(
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                {/* <FormLabel>Email</FormLabel> */}
                 <FormControl>
                   <Input
                   {...field}
@@ -102,11 +124,30 @@ export default function RegisterForm() {
             name="password"
             render={({field})=>(
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                {/* <FormLabel>Password</FormLabel> */}
                 <FormControl>
                   <Input
                   {...field}
-                  placeholder='************'
+                  placeholder='password'
+                  type="password"
+                  disabled={isPending}
+                  ></Input>
+                </FormControl>
+                <FormMessage/>
+
+              </FormItem>
+            )}
+            />
+          <FormField
+            control={form.control}
+            name="confirmPassword"
+            render={({field})=>(
+              <FormItem>
+                {/* <FormLabel>Password</FormLabel> */}
+                <FormControl>
+                  <Input
+                  {...field}
+                  placeholder='confirmpassword'
                   type="password"
                   disabled={isPending}
                   ></Input>
