@@ -1,13 +1,14 @@
 'use client'
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link} from "@nextui-org/react";
 import { Button } from "./ui/button";
+import { useCurrentUser } from "@/hooks/use-current-user"
 import React,{useState,useEffect} from "react";
 import { Poppins } from "next/font/google";
 const font = Poppins({
   subsets:["latin"],
   weight:["500"]
 })
-
+import { UserButton } from "./auth/user-button";
 import { CiHome } from "react-icons/ci";
 import { GiEgyptianProfile } from "react-icons/gi";
 import { IoMdChatbubbles } from "react-icons/io";
@@ -19,7 +20,9 @@ export default function NavbarUi() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [getPathname,setPathname] = useState("")
   const pathname = usePathname()
+  const user = useCurrentUser()
 
+  console.log(user)
  useEffect(()=>{
    setPathname(pathname)
  },[pathname])
@@ -67,12 +70,17 @@ export default function NavbarUi() {
       <NavbarContent justify="end">
         
         <NavbarItem>
-          <Link href={getPathname === "/auth/register"?"/auth/login":"/auth/register"}>
+          {user && <UserButton/>}
+          {!user && <Link href={getPathname === "/auth/register"?"/auth/login":"/auth/register"}>
           <Button variant="accent">
           {getPathname === "/auth/register"?(<GiPadlockOpen className="mr-2"/>):(<MdLogout className="mr-2"/>)}
             {getPathname === "/auth/register"?"sign in":"register"}
           </Button>
-          </Link>
+         
+          </Link>}
+        
+
+          
           
         </NavbarItem>
       </NavbarContent>
@@ -123,6 +131,7 @@ export default function NavbarUi() {
             >
               <span className=""><MdLogout className="h-8 w-8"/></span> Register
             </Link>
+            
             
           </NavbarMenuItem>
         
