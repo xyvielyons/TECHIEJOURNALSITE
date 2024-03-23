@@ -33,7 +33,8 @@ export default function LoginForm() {
     defaultValues:{
       email:"",
       password:""
-    }
+    },
+    mode:"onBlur"
   })
   const onSubmit = (values:z.infer<typeof LoginSchema>)=>{
     setSuccess("")
@@ -64,6 +65,7 @@ export default function LoginForm() {
 
   return (
     <CardWrapper
+    header="Login ✌️"
     headerLabel='Welcome back'
     backButtonLabel="Don't have an account?"
     backButtonHref='/auth/register'

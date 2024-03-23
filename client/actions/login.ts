@@ -9,6 +9,7 @@ import { getUserByEmail } from "@/data/user";
 import { getTwoFactorConfirmationByUserId } from "@/data/two-factor-confirmation";
 import { getTwoFactorTokenByEmail } from "@/data/two-factor-token";
 import { generateVerificationToken,generateTwoFactorToken } from "@/lib/tokens";
+import bcrypt from 'bcryptjs'
 import { sendVerificationEmail,sendTwoFactorTokenEmail } from "@/lib/mail";
 export const Login = async (values:z.infer<typeof LoginSchema>)=>{
     const validatedFields = LoginSchema.safeParse(values)
@@ -23,8 +24,16 @@ export const Login = async (values:z.infer<typeof LoginSchema>)=>{
    if(!existingUser || !existingUser.email || !existingUser.password){
     return {error:"Email does not exist"}
    }
+   const passwordMatch = await bcrypt.compare(
+    password,existingUser.password
+  )
+  if(!passwordMatch) return {error:"Password incorrect"}
    if(!existingUser.emailVerified){
     const verificationToken = await generateVerificationToken(existingUser.email)
+    await sendVerificationEmail(
+        verificationToken.email, verificationToken.token
+    )
+
     return {success:"confirmation email sent"}
    
    }
