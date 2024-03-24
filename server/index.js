@@ -7,7 +7,8 @@ import cookieParser from 'cookie-parser'
 import helmet from 'helmet'
 import xss from 'xss-clean'
 import postRoutes from './routes/post.route.js'
-
+import { globalErrorHandler } from "./controllers/errorController.js"
+import CustomError from "./utils/CustomError.js"
 dotenv.config()
 const app = express()
 
@@ -34,4 +35,9 @@ mongoose.connect(process.env.CONN_STR,{
 }).then(()=>app.listen(PORT,()=>console.log(`db connectio successful server running at port: ${PORT}`)))
 
 app.use("/api/post",postRoutes)
+app.all('*',(req,res,next)=>{
+    const err = new CustomError(`cant find ${req.originalUrl} on the server`,404)
+    next(err)
 
+})
+app.use(globalErrorHandler)
