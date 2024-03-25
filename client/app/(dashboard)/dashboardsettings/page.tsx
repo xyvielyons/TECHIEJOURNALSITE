@@ -1,9 +1,10 @@
-import React from 'react'
-
-function SettingsPage() {
+import SettingsPage from '../_components/settings'
+function Dashboardsettings() {
   return (
-    <div>SettingsPage</div>
+    <div className="flex items-center justify-center w-full">
+        <SettingsPage></SettingsPage>
+    </div>
   )
 }
 
-export default SettingsPage
+export default Dashboardsettings

@@ -42,6 +42,7 @@ if(values.email && values.email !== user.email){
 
 }
 if(values.password && values.newPassword && dbUser.password){
+    
     const passwordsMatch = await bcrypt.compare(
         values.password,
         dbUser.password

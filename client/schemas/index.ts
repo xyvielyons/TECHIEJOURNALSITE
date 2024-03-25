@@ -5,7 +5,7 @@ export const SettingsSchema:any = z.object({
     isTwoFactorEnabled:z.optional(z.boolean()),
     role:z.enum([UserRole.ADMIN,UserRole.USER]),
     email:z.optional(z.string().email()),
-    password:z.optional(z.string().min(6)),
+    password:z.optional(z.string()),
     newPassword:z.optional(z.string().min(6))
 
 
