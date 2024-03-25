@@ -22,7 +22,7 @@ export default function NavbarUi() {
   const pathname = usePathname()
   const user = useCurrentUser()
 
-  console.log(user)
+
  useEffect(()=>{
    setPathname(pathname)
  },[pathname])

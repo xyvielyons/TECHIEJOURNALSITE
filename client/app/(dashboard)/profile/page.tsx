@@ -1,8 +1,11 @@
 import React from 'react'
-
+import Profile from '../_components/profile'
 function ProfilePage() {
   return (
-    <div>ProfilePage</div>
+    <div className="flex w-full">
+      <Profile></Profile>
+
+    </div>
   )
 }
 
