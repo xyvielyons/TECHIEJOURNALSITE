@@ -3,7 +3,8 @@ import mongoose from 'mongoose'
 const postSchema = new mongoose.Schema({
     userId:{
         type:String,
-        required:[true,"userId is required"]
+        required:[true,"userId is required"],
+        unique:true
     },
     content:{
         type:String,
@@ -26,7 +27,8 @@ const postSchema = new mongoose.Schema({
     
     slug:{
         type:String,
-        required:[true,'slug is required']
+        required:[true,'slug is required'],
+        unique:true
     }
     
 

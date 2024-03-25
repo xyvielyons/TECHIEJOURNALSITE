@@ -26,22 +26,28 @@ export const createPost =asyncErrorHandler(async(req,res,next)=>{
 
 
 
-export const getPosts = async(req,res,next)=>{
-    try{
+export const getPosts = asyncErrorHandler(async(req,res,next)=>{
+  
         const posts = await Post.find()
-        const error = new CustomError('error',400)
-        return next(error)
-        res.status(201).json({
+        
+        res.status(200).json({
             status:"success",
             message:posts
         })
 
-    }catch(err){
-        res.status(400).json({
-            status:"fail",
-            message:err
-        })
-        console.log(err)
-    }
+   
     
-}
+})
+
+export const deletePosts = asyncErrorHandler(async(req,res,next)=>{
+    const findPost = await Post.findById(req.params.postId)
+    if(!findPost) return next(new CustomError(`post not found`,404))
+    const posts = await Post.findByIdAndDelete(req.params.postId)
+    res.status(200).json({
+        status:"success",
+        message:"Post successfully deleted"
+
+        
+    })
+
+})

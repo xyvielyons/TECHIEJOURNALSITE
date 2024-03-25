@@ -1,9 +1,11 @@
 import express from 'express'
-import { createPost,getPosts } from '../controllers/post.controller.js'
+import { verify } from '../utils/verify.js'
+import { createPost,getPosts,deletePosts } from '../controllers/post.controller.js'
 const router = express.Router()
 router.route('/createpost')
-.post(createPost)
+.post(verify,createPost)
 router.route('/getposts')
-.get(getPosts)
-
+.get(verify,getPosts)
+router.route('/deletepost/:postId')
+.delete(verify,deletePosts)
 export default router
