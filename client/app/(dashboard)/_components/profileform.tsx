@@ -1,9 +1,11 @@
-import React from 'react'
-
-function Profileform() {
+"use client"
+import { UserInfo } from "@/components/user-info"
+import { useCurrentUser } from "@/hooks/use-current-user"
+export default function Profileform() {
+    const user = useCurrentUser()
   return (
-    <div>profileform</div>
+    
+        <UserInfo user={user} label="🧕 Your Profile"></UserInfo>
+    
   )
 }
-
-export default Profileform

@@ -64,7 +64,7 @@ const onSubmit = (values:z.infer<typeof SettingsSchema>)=>{
 }
   return (
     
-    <Card className="w-[600px] mt-7">
+    <Card className="w-full mt-7">
       <CardHeader>
         <p className="text-2xl font-semibold text-center">⚙️ settings</p>
       </CardHeader>

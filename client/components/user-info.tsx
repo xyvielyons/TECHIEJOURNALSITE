@@ -11,7 +11,8 @@ export const UserInfo = ({
     label
 }:UserInfoProps)=>{
     return(
-        <Card className="w-[600px] shadow-md">
+     
+            <Card className="shadow-md w-full">
             <CardHeader>
                  <p className="text-2xl font-semibold text-center">{label}</p>
             </CardHeader>
@@ -64,5 +65,7 @@ export const UserInfo = ({
 
             </CardContent>
         </Card>
+
+       
     )
 }

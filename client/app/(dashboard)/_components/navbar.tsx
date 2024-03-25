@@ -8,7 +8,8 @@ import { Button } from '@/components/ui/button';
 import { RiUserSearchFill } from "react-icons/ri";
 import { IoSettingsOutline } from "react-icons/io5";
 import { usePathname } from 'next/navigation';
-export default function Navbar() {
+
+export default function Navbar({NavbarState}:any) {
   const pathname = usePathname();
   const [getPathname,setPathname] = useState("")
   useEffect(()=>{
@@ -17,7 +18,7 @@ export default function Navbar() {
 
   
   return (
-    <div className=''>
+    <div className={`transition ease-linear ${NavbarState ? `translate-x-0`:`-translate-x-full`} absolute md:static z-20 md:translate-x-0 mt-5`}>
         <div className="bg-creamywhite w-[200px] h-screen rounded-md pt-10 pr-10">
           <nav className='space-y-4'>
             <div className="">
