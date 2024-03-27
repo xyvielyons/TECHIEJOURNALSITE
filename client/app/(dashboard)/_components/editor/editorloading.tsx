@@ -7,8 +7,8 @@ export default function EditorLoading() {
     
   return (
     
-     <div className="flex w-full gap-2">
-         <div className="flex flex-col space-y-2 w-1/2">
+     <div className="flex w-full gap-2 md:flex-row flex-col">
+         <div className="flex flex-col space-y-2 md:w-1/2 w-full">
             <Skeleton className="rounded-lg">
                 <div className="h-28 rounded-lg bg-default-400"></div>
             </Skeleton>
@@ -19,7 +19,7 @@ export default function EditorLoading() {
                 <div className="h-28 rounded-lg bg-default-800"></div>
             </Skeleton>
          </div>
-         <div className="w-1/2">
+         <div className="md:w-1/2 w-full">
             <Skeleton className="rounded-lg">
                 <div className="h-screen rounded-lg bg-green-300"></div>
             </Skeleton>

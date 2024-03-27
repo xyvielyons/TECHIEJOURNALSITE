@@ -106,9 +106,9 @@ setSuccess
       }), [])
       
   return (
-    <div className="flex w-full gap-2">
+    <div className="flex w-full gap-2 flex-col md:flex-row">
 
-      <div className="w-1/2">
+      <div className="md:w-1/2 w-full">
         <div className="space-y-2">
             <div className=""> 
             <CoverImage></CoverImage>
@@ -119,7 +119,8 @@ setSuccess
 
             </div>
 
-            <div className='bg-creamywhite rounded-xl shadow-md '>
+            <div className='bg-creamywhite rounded-xl shadow-md flex  p-2 flex-col'>
+              <h1 className='text-xl font-bold'>Editor✏️</h1>
               
               <ReactQuill theme="snow" ref={quillRef} value={content} modules={modules} onChange={setContent} />
               <FormError message={error}></FormError>
@@ -132,7 +133,7 @@ setSuccess
        
 
         
-        <div className='w-1/2'>
+        <div className='md:w-1/2 w-full'>
          <Preview myContent={content}></Preview>
         </div>
     </div>
