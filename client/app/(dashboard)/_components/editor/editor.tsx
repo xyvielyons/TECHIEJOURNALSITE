@@ -210,7 +210,7 @@ function Editor() {
        
 
         
-        <div className='md:w-1/2 w-full'>
+        <div className='md:w-1/2 w-full border-2 border-accentcolor'>
          <Preview myContent={content}></Preview>
         </div>
     </div>

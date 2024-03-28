@@ -8,5 +8,7 @@ interface PostType {
     categoryData?:string
 }
 export const GetPostData=(values:PostType)=>{
-console.log(values)
+
+
+    
 }
