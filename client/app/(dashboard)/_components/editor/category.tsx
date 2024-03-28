@@ -8,7 +8,7 @@ import {
 import CardComponent from "../card"
 import { useEffect, useState } from "react"
 
-function CategoryCard({categoryCardData}) {
+function CategoryCard({categoryCardData}:any) {
     const [category,setCategory] = useState<string>('')
     useEffect(()=>{
         categoryCardData(category)
