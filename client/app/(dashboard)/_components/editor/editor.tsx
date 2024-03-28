@@ -13,6 +13,7 @@ import { Button } from '@/components/ui/button';
 import { LuSend } from "react-icons/lu";
 import { useCurrentUser } from '@/hooks/use-current-user';
 import CategoryCard from './category';
+import { GetPostData } from '@/actions/postdata';
 function Editor() {
     const user = useCurrentUser()
     const [content, setContent] = useState<string>('');
@@ -60,19 +61,27 @@ function Editor() {
     
       // 2. Combine original string, hyphen, and random string
       const modifiedString = `${originalString}-${randomString}`;
-    
-      return modifiedString;
+      const join = modifiedString.replace(/\s+/g, '');
+      return join;
     }
 
     const sendDataToServer = ()=>{
       
       const userId = user?.id
       const slug = getStringWithHyphensAndRandom(titleData)
-      if(!coverImageUrl && !titleData && !content ){
-        return setError("some fields have not been filled")
+      
+      if(!coverImageUrl){
+        return setError("no cover image uploaded")
+      }
+      if(!titleData){
+        return setError("please input title")
+      }
+      if(!categoryData){
+        return setError("please input category")
       }
       const data:object = {...dataToServer,slug,userId,categoryData}
-      console.log(data)
+      GetPostData(data)
+      
 
 
      
