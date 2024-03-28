@@ -28,8 +28,8 @@ function DashboardPageLayout({children}:{children: React.ReactNode}) {
   return (
     <div className=''>
 
-        <div className="">
-          <Button variant="dashboard" onClick={Navigation} className='md:hidden'><RxDashboard className='w-9 h-9 mr-4'/>Dashboard Menu</Button>
+        <div className="ml-2 mr-2 mt-2 ">
+          <Button variant="dashboard" onClick={Navigation} className='md:hidden shadow-md'><RxDashboard className='w-9 h-9 mr-4'/>Dashboard Menu</Button>
         </div>
         <div className="flex">
 

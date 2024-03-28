@@ -57,3 +57,7 @@ export const RegisterSchema = z.object({
     password:z.string().nonempty({ message: "Enter your password" }),
     confirmPassword:z.string().nonempty({ message: "confrim your password" })
 })
+
+export const TitleSchema = z.object({
+title:z.string().nonempty({message:"please input the title"}).min(8,{message:"A minimum of 8 characters is needed"})
+})

@@ -4,7 +4,7 @@ const nextConfig = {
         remotePatterns: [
           {
             protocol: 'https',
-            hostname: 'https://firebasestorage.googleapis.com',
+            hostname: 'firebasestorage.googleapis.com',
             port: '',
             pathname: '/dashboard/profile/**',
           },

@@ -10,10 +10,10 @@ function CreatePost() {
 
   return (
     <div className='mt-5 w-full p-2 space-y-1'>
-      <Link href="/profile"><Button variant="socials"><TfiControlBackward /></Button></Link>
+      <Link href="/profile"><Button className='shadow-md' variant="socials"><TfiControlBackward className='w-6 h-6 font-bold'/></Button></Link>
       <h1 className='font-bold text-xl text-secondarycolor'>Create a Post</h1>
 
-      <div className="w-full">
+      <div className="w-full flex">
         <Suspense fallback={<EditorLoading/>}>
           <MyEditor></MyEditor>
         </Suspense>

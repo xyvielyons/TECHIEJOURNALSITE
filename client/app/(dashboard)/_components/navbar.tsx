@@ -11,15 +11,12 @@ import { usePathname } from 'next/navigation';
 
 export default function Navbar({NavbarState}:any) {
   const pathname = usePathname();
-  const [getPathname,setPathname] = useState("")
-  useEffect(()=>{
-    setPathname(pathname)
-  },[pathname])
-
+ 
   
   return (
-    <div className={`transition ease-linear ${NavbarState ? `translate-x-0`:`-translate-x-full`} absolute md:static z-20 md:translate-x-0 mt-5`}>
-        <div className="bg-creamywhite w-[200px] h-screen rounded-md pt-10 pr-10">
+    <div className={`transition ease-linear ${NavbarState ? `translate-x-0`:`-translate-x-full`} absolute md:static z-20 md:translate-x-0 mt-2`}>
+      <h1 className='font-bold text-secondarycolor text-xl ml-4'>Dashboard</h1>
+        <div className="bg-creamywhite w-[200px] h-screen rounded-md pt-10 pr-10 shadow-xl">
           <nav className='space-y-4'>
             <div className="">
               <Link href="/profile" >

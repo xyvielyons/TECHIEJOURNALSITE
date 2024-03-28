@@ -1,7 +1,7 @@
 'use client'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import React, { useMemo, useRef,useState,useEffect } from 'react'
+import React, { useMemo, useRef,useState,useEffect, useCallback } from 'react'
 import {Storage} from '@/firebase/firebaseconfig'
 import {ref,uploadBytesResumable,getDownloadURL} from 'firebase/storage'
 import Preview from '../preview';
@@ -9,17 +9,77 @@ import { FormError } from '@/components/form-error';
 import { FormSuccess } from '@/components/form-success';
 import TitleCard from './titlecard';
 import CoverImage from './coverImage';
+import { Button } from '@/components/ui/button';
+import { LuSend } from "react-icons/lu";
+import { useCurrentUser } from '@/hooks/use-current-user';
+import CategoryCard from './category';
 function Editor() {
+    const user = useCurrentUser()
     const [content, setContent] = useState<string>('');
     const [error,setError]=useState("")
     const [success,setSuccess]=useState("")
     const quillRef = useRef<any>(null);
-    useEffect(()=>{
-setSuccess("")
-setError("")
-setSuccess
-    },[content])
+
+    const [coverImageUrl,setCoverImageUrl] = useState<string>('')
+    const [titleData,setTitleData] = useState<string>('')
+    const [categoryData,setCategoryData] = useState<string>('')
+    const [dataToServer,setDataToServer] = useState<object>({})
+
+    
+    
+
    
+    const coverImageData = useCallback((props:string)=>{
+      setCoverImageUrl(props)
+    },[])
+    const titleCardData = useCallback((props:string)=>{
+      setTitleData(props)
+     
+    },[])
+    const categoryCardData = useCallback((props:string)=>{
+      setCategoryData(props)
+     
+    },[])
+   
+
+
+
+
+    useEffect(()=>{
+        setSuccess("")
+        setError("")
+    },[content])
+
+    useEffect(()=>{
+      setDataToServer({coverImageUrl,titleData,content})
+    },[coverImageUrl,titleData,content])
+   
+    function getStringWithHyphensAndRandom(originalString:string, randomStringLength = 6) {
+      // 1. Generate random string (optional length)
+      const randomString = Math.random().toString(36).substring(2, randomStringLength + 2);
+    
+      // 2. Combine original string, hyphen, and random string
+      const modifiedString = `${originalString}-${randomString}`;
+    
+      return modifiedString;
+    }
+
+    const sendDataToServer = ()=>{
+      
+      const userId = user?.id
+      const slug = getStringWithHyphensAndRandom(titleData)
+      if(!coverImageUrl && !titleData && !content ){
+        return setError("some fields have not been filled")
+      }
+      const data:object = {...dataToServer,slug,userId,categoryData}
+      console.log(data)
+
+
+     
+      
+    }
+
+
     const uploadImages = async(file:any)=>{
         try{
 
@@ -111,11 +171,15 @@ setSuccess
       <div className="md:w-1/2 w-full">
         <div className="space-y-2">
             <div className=""> 
-            <CoverImage></CoverImage>
+            <CoverImage coverImageData = {coverImageData}></CoverImage>
 
             </div>
             <div className=""> 
-            <TitleCard></TitleCard>
+            <TitleCard titleCardData={titleCardData}></TitleCard>
+
+            </div>
+            <div className=""> 
+            <CategoryCard categoryCardData={categoryCardData}></CategoryCard>
 
             </div>
 
@@ -125,6 +189,10 @@ setSuccess
               <ReactQuill theme="snow" ref={quillRef} value={content} modules={modules} onChange={setContent} />
               <FormError message={error}></FormError>
               <FormSuccess message={success} ></FormSuccess>
+              <div className="flex justify-end mt-2 shadow-sm">
+                <Button onClick={sendDataToServer} variant="dashboard">Post <LuSend className='ml-1 h-6 w-6'/></Button>
+
+              </div>
                         
             </div>
 
