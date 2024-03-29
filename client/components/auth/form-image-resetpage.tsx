@@ -4,18 +4,9 @@ import Image from 'next/image'
 import forgotPassword from '@/public/undraw_forgot_password_re_hxwm.svg'
 import SignUpBlob from '@/public/signinblob.svg'
 
-import Lottie from 'react-lottie'
-import animationData from '@/LottieFiles/register.json'
-function FormImageSection() {
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
 
+function FormImageSection() {
+  
   return (
     
     <div className="relative flex justify-center items-center">
