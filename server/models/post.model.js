@@ -3,16 +3,18 @@ import mongoose from 'mongoose'
 const postSchema = new mongoose.Schema({
     userId:{
         type:String,
-        required:[true,"userId is required"],
-        unique:true
+        required:[true,'userId is required']
+        
     },
     content:{
         type:String,
-        required:[true,'content is required']
+        required:[true,'content is required'],
+       
     },
     title:{
         type:String,
-        required:[true,'title is required']
+        required:[true,'title is required'],
+       
     },
     
     image:{
@@ -29,6 +31,7 @@ const postSchema = new mongoose.Schema({
         type:String,
         required:[true,'slug is required'],
         unique:true
+       
     }
     
 

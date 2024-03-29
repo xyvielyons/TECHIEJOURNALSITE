@@ -14,8 +14,14 @@ import { LuSend } from "react-icons/lu";
 import { useCurrentUser } from '@/hooks/use-current-user';
 import CategoryCard from './category';
 import { GetPostData } from '@/actions/postdata';
+import Image from 'next/image';
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
+import { useRouter } from 'next/navigation';
+import { useTransition } from 'react';
 function Editor() {
     const user = useCurrentUser()
+    const [isPending,startTransition] = useTransition()
+    const router = useRouter()
     const [content, setContent] = useState<string>('');
     const [error,setError]=useState("")
     const [success,setSuccess]=useState("")
@@ -26,6 +32,7 @@ function Editor() {
     const [categoryData,setCategoryData] = useState<string>('')
     const [dataToServer,setDataToServer] = useState<object>({})
 
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
     
     
 
@@ -65,7 +72,7 @@ function Editor() {
       return join;
     }
 
-    const sendDataToServer = ()=>{
+    const sendDataToServer = async()=>{
       
       const userId = user?.id
       const slug = getStringWithHyphensAndRandom(titleData)
@@ -80,7 +87,18 @@ function Editor() {
         return setError("please input category")
       }
       const data:object = {...dataToServer,slug,userId,categoryData}
-      GetPostData(data)
+      startTransition(async()=>{
+        const myresponse = await GetPostData(data)
+        console.log(myresponse)
+      setSuccess(myresponse?.success)
+      setError(myresponse?.error)
+      if(myresponse.success){
+        router.replace("/profile/createpost/postsuccess")
+      }
+      })
+      
+      
+     
       
 
 
@@ -199,7 +217,7 @@ function Editor() {
               <FormError message={error}></FormError>
               <FormSuccess message={success} ></FormSuccess>
               <div className="flex justify-end mt-2 shadow-sm">
-                <Button onClick={sendDataToServer} variant="dashboard">Post <LuSend className='ml-1 h-6 w-6'/></Button>
+                <Button onClick={onOpen} variant="dashboard">Post <LuSend className='ml-1 h-6 w-6'/></Button>
 
               </div>
                         
@@ -210,9 +228,41 @@ function Editor() {
        
 
         
-        <div className='md:w-1/2 w-full border-2 border-accentcolor'>
+        <div className='md:w-1/2 w-full'>
          <Preview myContent={content}></Preview>
         </div>
+       <div className=""></div>
+        <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} placement='center'>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">Create Post😃</ModalHeader>
+              <ModalBody>
+                <div className='flex justify-center items-center'>
+                  <Image src="/createpost.gif" alt="create post gif" width={100} height={100}></Image>
+                  <p> 
+                    Are you sure you want to submit your Post?
+                  </p>
+                </div>
+                <FormError message={error}></FormError>
+               <FormSuccess message={success} ></FormSuccess>
+                
+                
+              </ModalBody>
+              <ModalFooter>
+                <Button className='hover:bg-accentcolor bg-secondarycolor' onClick={sendDataToServer} disabled={isPending}>
+                  yes
+                </Button>
+                <Button className='bg-destructive hover:bg-accentcolor' onClick={onClose}>
+                  No
+                </Button>
+                
+                
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </div>
     
   )
