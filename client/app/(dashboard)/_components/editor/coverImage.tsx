@@ -13,7 +13,7 @@ function CoverImage({coverImageData}:any) {
   const [imageUrl,setImageUrl]=useState<string>("")
   const [error,setError]=useState("")
   const [success,setSuccess]=useState("")
-  
+  const [progress,setProgress] = useState<any>()
 useEffect(()=>{
   if(imageUrl){
     coverImageData(imageUrl)
@@ -44,7 +44,7 @@ useEffect(()=>{
           'state_changed',
           (snapshot)=>{
             const progress = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
-            console.log(progress)
+            setProgress(progress)
            
           },(error)=>{
               console.log(error)
@@ -113,6 +113,8 @@ useEffect(()=>{
       <FormSuccess message={success}></FormSuccess>
       <FormError message={error}></FormError>
     </div>
+    <p className={`${progress == 100 ? 'rounded-full bg-green-500':'bg-destructive'} w-[150px] flex items-center justify-center text-white text-sm rounded-full shadow-md`}>{progress? parseInt(progress): 0}% uploaded</p>
+
     </CardComponent>
   )
 }

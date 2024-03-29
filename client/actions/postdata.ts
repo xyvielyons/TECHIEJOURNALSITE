@@ -31,7 +31,7 @@ export const GetPostData=(values:PostType)=>{
 
         })
         if(!response.ok){
-            return {error:"Post not submitted"}
+            return {error:"Post not submitted try again later"}
         }
 
         return await response.json()

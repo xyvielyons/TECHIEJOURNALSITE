@@ -5,9 +5,9 @@ import SignUpBlob from '@/public/signinblob.svg'
 
 function PostSuccess() {
   return (
-    <div className='flex flex-col-reverse md:flex-row gap-4 items-center'>
+    <div className='flex flex-col-reverse md:flex-row gap-4 items-center p-2 md:p-4 mt-6'>
        <div className="relative flex justify-center items-center">
-          <div className="absolute top-16  flex w-full p-20 ">  
+          <div className="absolute top-6  flex w-full p-20 ">  
             <Image src="/winners.svg" alt="forgot password" width="600" height="600"></Image>   
           </div>
 
