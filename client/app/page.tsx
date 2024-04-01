@@ -1,16 +1,14 @@
-import Image from "next/image";
-import { Button } from "@/components/ui/button"
-import {Poppins} from "next/font/google"
-import { cn } from "@/lib/utils";
-import { LoginButton } from "@/components/auth/login-button";
-const font = Poppins({
-  subsets:["latin"],
-  weight:["600"]
-})
+import HomePage from "@/components/home/homepage";
+import type { Metadata } from "next";
+
+export const metadata:Metadata = {
+  title:"Home",
+  description:"Get the latest blog posts happening worldwide on techie.io"
+}
 export default function Home() {
   return (
-    <main className="">
-         <div>Home</div>
+    <main className="w-full">
+         <HomePage></HomePage>
     </main>
   );
 }

@@ -1,7 +1,5 @@
 'use server'
 
-import { error } from "console"
-
 interface PostType {
     userId?:string
     coverImageUrl?:string
@@ -37,7 +35,7 @@ export const GetPostData=(values:PostType)=>{
         return await response.json()
 
     }
-    console.log(sendPost("http://127.0.0.1:4000/api/post/createpost"))
+    sendPost("http://127.0.0.1:4000/api/post/createpost")
     return{success:"Post successfully submitted",error:""}
     
 }

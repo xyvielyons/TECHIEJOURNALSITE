@@ -5,6 +5,7 @@ import { FaExclamationTriangle } from "react-icons/fa";
 export default function ErrorCard() {
   return (
     <CardWrapper
+    header="error"
     headerLabel="Oops something went wrong"
     backButtonHref="/auth/login"
     backButtonLabel="Back to Login"
