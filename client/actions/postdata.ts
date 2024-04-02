@@ -1,5 +1,6 @@
 'use server'
-
+import { revalidateTag } from "next/cache"
+import { revalidatePath } from "next/cache"
 interface PostType {
     userId?:string
     coverImageUrl?:string
@@ -36,6 +37,8 @@ export const GetPostData=(values:PostType)=>{
 
     }
     sendPost("http://127.0.0.1:4000/api/post/createpost")
+    revalidateTag('getallposts')
+    revalidatePath('/')
     return{success:"Post successfully submitted",error:""}
     
 }

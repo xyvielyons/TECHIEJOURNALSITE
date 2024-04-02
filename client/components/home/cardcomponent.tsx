@@ -21,7 +21,7 @@ export default function CardComponent({title,description,image}:CardComponentTyp
 const Mydescription:string = removeTags(parse(description))
 
     return (
-      <div className="bg-creamywhite w-full md:w-[200px] rounded-xl hover:bg-accentcolor hover:text-white p-2 shadow-md text-secondarycolor">
+      <div className="bg-creamywhite w-full rounded-xl hover:bg-accentcolor hover:text-white p-2 shadow-md text-secondarycolor">
         <div className="w-full">
             <Image src={image} className="rounded-t-xl h-64" width="1200" height="768" alt="card image"></Image>
         </div>
@@ -30,7 +30,7 @@ const Mydescription:string = removeTags(parse(description))
                     <h1 className="font-bold text-sm">{title}</h1>
                 </div>
                 <div className="">
-                    <p className="text-sm text-ellipsis line-clamp-3">{Mydescription}</p>
+                    <p className="text-sm text-ellipsis line-clamp-3 text-secondarycolor">{Mydescription}</p>
                 </div>
 
         </div>

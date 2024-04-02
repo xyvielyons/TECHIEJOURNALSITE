@@ -27,11 +27,29 @@ export const createPost =asyncErrorHandler(async(req,res,next)=>{
 
 
 export const getPosts = asyncErrorHandler(async(req,res,next)=>{
-  
-        const posts = await Post.find()
+    console.log(req.query)
+        const startIndex = parseInt(req.query.startIndex) || 0
+        const limit = parseInt(req.query.limit) || 9
+        const sortDirection = req.query.order == "asc" ? 1 : -1    
+
+        const posts = await Post.find({
+            ...(req.query.userId && {userId:req.query.userId}),
+            ...(req.query.title && {content:req.query.title}),
+            ...(req.query.id && {_id:req.query.id}),
+            ...(req.query.category && {category:req.query.category}),
+            ...(req.query.searchTerm && {
+                $or:[
+                    {title:{$regex:req.query.searchTerm,$options:"i"}},
+                    {content:{$regex:req.query.searchTerm,$options:"i"}}
+
+                ],
+            })
+            
+        }).sort({updatedAt:sortDirection}).skip(startIndex).limit(limit)
         
         res.status(200).json({
             status:"success",
+            length:posts.length,
             message:posts
         })
 
