@@ -1,5 +1,6 @@
 type Posts = {
     "status":string,
+    "length":number,
     "message":[
         {
             "_id":string,

@@ -79,3 +79,13 @@ html,body,:root{
     @apply bg-background text-foreground;
   }
 }
+.swiper-button-prev{
+  color:yellow
+}
+.swiper-scrollbar{
+  background-color: aqua;
+}
+.sample-slider .swiper-pagination-bullet{
+  width: 20px;
+  height: 20px;
+}
