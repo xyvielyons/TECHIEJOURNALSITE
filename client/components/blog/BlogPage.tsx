@@ -1,4 +1,5 @@
 'use client'
+import Link from "next/link"
 import { useEffect,useState,useCallback } from "react"
 import { getallPosts } from "@/data/get-posts-from-server"
 import CardComponent from "../home/cardcomponent"
@@ -7,6 +8,7 @@ export default function BlogsPage() {
   const [posts,setPosts] = useState<any>([])
   const [error,setError] = useState<string | null>(null)
   const [nav,setNav] = useState<string>('All')
+  
 useEffect(()=>{
   const postsFromServer:Promise<Posts>=getallPosts()
   const fetchPosts = async()=>{
@@ -40,25 +42,27 @@ setNav(props)
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
         {nav==='All' && posts.map((post:any)=>{
+         return <CardComponent
+          key={post._id}
+          slug={post.slug}
+          title={post.title}
+          description={post.content}
+          image={post.image}
+          ></CardComponent>
+     })}
+        {nav==='Other' && posts.filter((post:any)=>post.category === "Other").map((post:any)=>{
           return <CardComponent
+          slug={post.slug}
           key={post._id}
           title={post.title}
           description={post.content}
           image={post.image}
           ></CardComponent>
-
-        })}
-        {nav==='Other' && posts.filter((post:any)=>post.category === "Other").map((post:any)=>(
-          <CardComponent
-          key={post._id}
-          title={post.title}
-          description={post.content}
-          image={post.image}
-          ></CardComponent>
-        ))}
+})}
         {nav==='Ai' && posts.filter((post:any)=>post.category === "Ai").map((post:any)=>(
           <CardComponent
           key={post._id}
+          slug={post.slug}
           title={post.title}
           description={post.content}
           image={post.image}
@@ -67,6 +71,7 @@ setNav(props)
         {nav==='Programming' && posts.filter((post:any)=>post.category === "Programming").map((post:any)=>(
           <CardComponent
           key={post._id}
+          slug={post.slug}
           title={post.title}
           description={post.content}
           image={post.image}
@@ -76,6 +81,7 @@ setNav(props)
         {nav==='Engineering' && posts.filter((post:any)=>post.category === "Engineering").map((post:any)=>(
           <CardComponent
           key={post._id}
+          slug={post.slug}
           title={post.title}
           description={post.content}
           image={post.image}
@@ -84,6 +90,7 @@ setNav(props)
         {nav==='Cloud' && posts.filter((post:any)=>post.category === "Cloud").map((post:any)=>(
           <CardComponent
           key={post._id}
+          slug={post.slug}
           title={post.title}
           description={post.content}
           image={post.image}

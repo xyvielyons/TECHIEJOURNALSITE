@@ -101,7 +101,7 @@ useEffect(()=>{
 
   return (
     <CardComponent
-    title="Upload Cover Image 😃"
+    title="Upload Image 😃"
     description='upload image here....'
     >
         <div className="p-2">

@@ -1,12 +1,16 @@
+'use client'
 import Image from "next/image"
 import parse from 'html-react-parser';
+import Link from "next/link";
 interface CardComponentTypes {
     title:string
     description:string
     image:string
+    slug:string
 }
   
-export default function CardComponent({title,description,image}:CardComponentTypes) {
+export default function CardComponent({title,description,image,slug}:CardComponentTypes) {
+  console.log(slug)
   function removeTags(str:any) {
     if ((str === null) || (str === ''))
         return false;
@@ -22,6 +26,7 @@ const Mydescription:string = removeTags(parse(description))
 
     return (
       <div className="bg-creamywhite w-full rounded-xl hover:bg-accentcolor hover:text-white p-2 shadow-md text-secondarycolor">
+        <Link href={`/post/${slug}`} className="" target="_blank">
         <div className="w-full">
             <Image src={image} className="rounded-t-xl h-64" width="1200" height="768" alt="card image"></Image>
         </div>
@@ -34,6 +39,7 @@ const Mydescription:string = removeTags(parse(description))
                 </div>
 
         </div>
+        </Link>
         
       </div>
     )

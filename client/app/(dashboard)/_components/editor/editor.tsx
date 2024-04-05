@@ -229,7 +229,7 @@ function Editor() {
 
         
         <div className='md:w-1/2 w-full'>
-         <Preview myContent={content}></Preview>
+         <Preview myContent={content} image={coverImageUrl} title={titleData}></Preview>
         </div>
        <div className=""></div>
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} placement='center'>

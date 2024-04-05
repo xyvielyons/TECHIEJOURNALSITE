@@ -89,3 +89,9 @@ html,body,:root{
   width: 20px;
   height: 20px;
 }
+.imageinpost img{
+  scale:0.8
+}
+.imageinpost h1{
+  font-size: 3rem;
+}

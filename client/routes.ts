@@ -1,7 +1,7 @@
 //an array of routes that are accessible to the public
 //these routes do not require authentication
 export const PublicRoutes = [
-    "/","/auth/new-verification","/blog","/about"
+    "/","/auth/new-verification","/blog","/about","/post/:postslug*"
 ]
 //an array of routes that are used for authentication
 //these routes will redirect logged in users to /settings
